@@ -17,4 +17,8 @@ To build:
     make dhcpserver_defconfig
     make
 
+Useful commands when running:
+
+    dhcpleases
+    cat /etc/dnsd.conf
 
