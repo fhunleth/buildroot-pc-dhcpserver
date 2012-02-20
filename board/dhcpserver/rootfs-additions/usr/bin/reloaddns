@@ -1,10 +1,13 @@
 #!/bin/sh
 
 DNSDCONF=/etc/dnsd.conf
+DOMAIN=lan.troodonsw.com
 
 echo "dlink 192.168.0.1" > $DNSDCONF
+echo "dlink.$DOMAIN 192.168.0.1" >> $DNSDCONF
 echo "dhcpserver 192.168.0.2" >> $DNSDCONF
-dumpleases -a | awk 'NR>1 && NF>7 {print $3,$2}' >> $DNSDCONF
+echo "dhcpserver.$DOMAIN 192.168.0.2" >> $DNSDCONF
+dumpleases -a | awk "NR>1 && NF>7 {print \$3,\$2 \"\n\" \$3 \".$DOMAIN\",\$2}" >> $DNSDCONF
 
 killall dnsd
 dnsd -c $DNSDCONF -d
