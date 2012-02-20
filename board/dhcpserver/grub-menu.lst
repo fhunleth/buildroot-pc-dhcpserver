@@ -1,0 +1,7 @@
+default		0
+timeout		0
+color cyan/blue white/blue
+
+title		BuildRoot ISO9660 image
+kernel		/kernel 
+initrd		/initrd
